@@ -128,4 +128,31 @@ function draw() {
     //     ctx.stroke();
     // }
   
+    // --------------------------------------------------------------------------------
+
+    // lineJoin - round(둥글게), bevel(세모), miter(초기 설정, 마름모)
+    // 도형을 이루는 선이나 호나 곡선들이 연결되는 지점의 모양을 결정
+
+    // var lineJoin = ['round', 'bevel', 'miter'];
+    // ctx.lineWidth = 10;
+    // for (var i=0;i<lineJoin.length;i++){
+    //     ctx.lineJoin = lineJoin[i];
+    //     ctx.beginPath();
+    //     ctx.moveTo(-5, 5 + i * 40);
+    //     ctx.lineTo(35, 45 + i * 40);
+    //     ctx.lineTo(75, 5 + i * 40);
+    //     ctx.lineTo(115, 45 + i * 40);
+    //     ctx.lineTo(155, 5 + i * 40);
+    //     ctx.stroke();
+    // }
+
+    // lineJoin - miterLimit
+    // miter 모양의 선이 잘리는 경우 선의 끝점 모양을 조절하는 옵션
+    // 속성값을 miter로 하여 두 선이 연결되면,
+    // 연결되는 두 선의 바깥쪽 테두리는 연장선이 만나는 지점까지 확장됩니다.
+
+    // --------------------------------------------------------------------------------
+
+    
+
 }
