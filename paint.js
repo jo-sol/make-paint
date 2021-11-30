@@ -7,6 +7,8 @@ function draw(){
         var ctx = canvas.getContext('2d');
 
         // 직사각형 그리기
+        // rect(x, y, width, height)
+        // 좌측상단이 (x, y)이고 폭과 높이가 width와 height인 직사각형을 그립니다.
 
         // fillRect(x, y, width, height)
         // 색칠된 직사각형 그리기
@@ -150,7 +152,17 @@ function draw(){
 
         // --------------------------------------------------------------------------------
 
+        // Path() 익히기
         
-        
+        var rectangle = new Path2D();
+        rectangle.rect(10, 10, 50, 50);
+
+        var circle = new Path2D();
+        circle.moveTo(125, 35);
+        circle.arc(100, 35, 25, 0, 2 * Math.PI);
+
+        ctx.stroke(rectangle);
+        ctx.fill(circle);
+
     }
 }
