@@ -13,8 +13,8 @@
 　 아직 없음<br/>
   <br/>
   
-✔ **사용한 파일**<br/>
-　 canvus API<br/>
+✔ **참고**<br/>
+　 https://developer.mozilla.org/ko/docs/Web/API/Canvas_API<br/>
   <br/>
   
 ✔ **진행 기간**<br/>
