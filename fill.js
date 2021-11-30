@@ -153,6 +153,38 @@ function draw() {
 
     // --------------------------------------------------------------------------------
 
-    
+    // 대시라인 - setLineDash, lineDashOffset
+    // setLineDash - 거리를 지정하는 숫자 목록을 받아 선과 틈을 교대로 그린다
+    // lineDashOffset - 선과 틈을 교대로 그리는 시작 위치를 조정하는 옵션
+
+    var offset = 0;
+
+    function draw() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.setLineDash([4, 2]);
+        ctx.lineDashOffset = -offset;
+        ctx.strokeRect(10, 10, 100, 100);
+    }
+
+    // 연습
+    // function draw() {
+    //     ctx.clearRect(0, 0, canvas.width, canvas.height);
+    //     ctx.lineWidth = 4;
+    //     ctx.strokeStyle = '#09f';
+    //     ctx.setLineDash([50, 5]); // 선 길이, 선 간격
+    //     ctx.lineDashOffset = -offset;
+    //     ctx.strokeRect(10, 10, 100, 100);
+    // }
+
+    function march() {
+    offset++;
+    if (offset > 50) {  // 선이 이동하는 거리
+        offset = 0;
+    }
+    draw();
+    setTimeout(march, 100); // 선이 움직이는 속도
+    }
+
+    march();
 
 }
