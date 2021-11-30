@@ -58,6 +58,35 @@ function draw(){
 
         // --------------------------------------------------------------------------------
 
+        // 선 그리기
+
+        // ctx.beginPath(); // 경로 열어 주는 메소드
+        // ctx.moveTo(25, 25); // 시작점
+        // ctx.lineTo(105, 25); // 끝점
+        // ctx.closePath(); // stroke() 메소드를 사용해 주기 위해 닫아 주기
+        // ctx.stroke(); // 선을 그려 주는 메소드
+
+        // Filled triangle
+        // ctx.beginPath();
+        // ctx.moveTo(10, 25);
+        // ctx.lineTo(70, 30);
+        // ctx.lineTo(12, 105);
+        // ctx.fill();
+
+        // Stroked triangle
+        // ctx.beginPath();
+        // ctx.moveTo(125, 125);
+        // ctx.lineTo(125, 45);
+        // ctx.lineTo(45, 125);
+        // ctx.closePath();
+        // ctx.stroke();
+
+
+        // --------------------------------------------------------------------------------
+
         
+
+
+
     }
 }
