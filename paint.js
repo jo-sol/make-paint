@@ -81,12 +81,48 @@ function draw(){
         // ctx.closePath();
         // ctx.stroke();
 
+        // --------------------------------------------------------------------------------
+
+        // 호 그리기
+
+        // Boolean 값을 가지는 anticlockwise 변수는
+        // true일 때 반시계 방향 false일 때 시계 방향으로 그려진다.
+
+        // ctx.beginPath();
+        // var x = 25 + 1 * 50;
+        // var y = 25 + 1 * 50; 
+        // var radius = 20; // 반지름
+        // var startAngle = 0; // 시작 각도
+        // var endAngle = Math.PI + (Math.PI * 1) / 2; // 끝 각도 - 기본값 180도
+        // var anticlockwise = 1 / 2 == 0 ? false : true; // 시계 방향인지 반시계 방향인지 결정
+
+        // ctx.arc(x, y, radius, startAngle, endAngle, anticlockwise);
+        // ctx.closePath();
+        // ctx.stroke();
+
+        // for (var i = 0; i < 4; i++) {
+        //     for (var j = 0; j < 3; j++) {
+        //       ctx.beginPath();
+        //       var x = 25 + j * 50;
+        //       var y = 25 + i * 50;
+        //       var radius = 20;
+        //       var startAngle = 0;
+        //       var endAngle = Math.PI + (Math.PI * j) / 2;
+        //       var anticlockwise = i % 2 == 0 ? false : true;
+      
+        //       ctx.arc(x, y, radius, startAngle, endAngle, anticlockwise);
+      
+        //       if (i > 1) {
+        //         ctx.fill();
+        //       } else {
+        //         ctx.stroke();
+        //       }
+        //     }
+        //   }
 
         // --------------------------------------------------------------------------------
 
         
-
-
 
     }
 }
