@@ -68,21 +68,64 @@ function draw() {
     // 투명도 조절하기 - rgba() 예제
 
     // 배경을 그린다
-  ctx.fillStyle = 'rgb(255,221,0)';
-  ctx.fillRect(0,0,150,37.5);
-  ctx.fillStyle = 'rgb(102,204,0)';
-  ctx.fillRect(0,37.5,150,37.5);
-  ctx.fillStyle = 'rgb(0,153,255)';
-  ctx.fillRect(0,75,150,37.5);
-  ctx.fillStyle = 'rgb(255,51,0)';
-  ctx.fillRect(0,112.5,150,37.5);
+    //   ctx.fillStyle = 'rgb(255,221,0)';
+    //   ctx.fillRect(0,0,150,37.5);
+    //   ctx.fillStyle = 'rgb(102,204,0)';
+    //   ctx.fillRect(0,37.5,150,37.5);
+    //   ctx.fillStyle = 'rgb(0,153,255)';
+    //   ctx.fillRect(0,75,150,37.5);
+    //   ctx.fillStyle = 'rgb(255,51,0)';
+    //   ctx.fillRect(0,112.5,150,37.5);
 
-  // 반투명한 사각형을 그린다
-  for (var i=0;i<10;i++){
-    ctx.fillStyle = 'rgba(255,255,255,'+(i+1)/10+')';
-    for (var j=0;j<4;j++){
-      ctx.fillRect(5+i*14,5+j*37.5,14,27.5)
-    }
-  }
+    // 반투명한 사각형을 그린다
+    //   for (var i=0;i<10;i++){
+    //     ctx.fillStyle = 'rgba(255,255,255,'+(i+1)/10+')';
+    //     for (var j=0;j<4;j++){
+    //       ctx.fillRect(5+i*14,5+j*37.5,14,27.5)
+    //     }
+    //   }
+
+    // --------------------------------------------------------------------------------
+
+    // 선 두께 조절하기
+    // for (var i = 0; i < 10; i++){
+    //     ctx.lineWidth = 1 + i;
+    //     ctx.beginPath();
+    //     ctx.moveTo(5 + i * 14, 5);
+    //     ctx.lineTo(5 + i * 14, 140);
+    //     ctx.stroke();
+    // }
+
+    // ctx.lineWidth = 5;
+    // ctx.beginPath();
+    // ctx.moveTo(5, 15);
+    // ctx.lineTo(135, 15);
+    // ctx.stroke();
+
+    // --------------------------------------------------------------------------------
+
+    // 선의 끝점 모양 조절하기
+
+    // var lineCap = ['butt','round','square'];
+
+    // 안내선을 그린다
+    // ctx.strokeStyle = '#09f';
+    // ctx.beginPath();
+    // ctx.moveTo(10, 10);
+    // ctx.lineTo(140, 10);
+    // ctx.moveTo(10, 140);
+    // ctx.lineTo(140, 140);
+    // ctx.stroke();
+
+    // 선을 그린다
+    // ctx.strokeStyle = 'black';
+    // for (var i=0;i<lineCap.length;i++){  // 배열 길이만큼 반복
+    //     ctx.lineWidth = 15;
+    //     ctx.lineCap = lineCap[i];    // i번째 인덱스의 값(즉, 문자열)이 들어감 > 배열의 인덱스를 이용하여 선의 끝점 모양을 설정
+    //     ctx.beginPath();
+    //     ctx.moveTo(25 + i * 50, 10); // i번째 인덱스 숫자(i)가 들어감
+    //     ctx.lineTo(25 + i * 50,140);
+    //     ctx.stroke();
+    // }
   
 }
