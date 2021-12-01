@@ -24,7 +24,7 @@
 ✔ **Strack**<br/>
 　 WEB: HTML5, CSS3, JavaScript <br/>
 　 IDE: Visual Studio Code <br/>
-　 API: Canvus <br/>
+　 API: Canvas <br/>
 
 --------------------------------------------------------------------------
 
