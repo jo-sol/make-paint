@@ -47,8 +47,26 @@ if (clear) {
     });
 }
 
-
-
 // --------------------------------------------------
 
 const save = document.getElementById("saveButton");
+
+function handleSaveClick() {
+    const image = canvas.toDataURL();           // 캔버스의 이미지를 데이터 URL로 변환, 기본값은 PNG
+    
+    // var fullQuality = image.replace(/^data:image\/png;base64,/, "1.0");     // 이미지의 품질을 높여 준다.
+    // var mediumQuality = image.replace(/^data:image\/png;base64,/, "0.5");   // 이미지의 품질을 낮추어 준다.
+    // var lowQuality = image.replace(/^data:image\/png;base64,/, "0.1");      // 이미지의 품질을 낮추어 준다.
+
+    // .createElement()는 요소를 생성하는 함수
+    const link = document.createElement("a");   // createElement에 대해 "a"라는 태그를 만들어서 link에 대입 <a></a>
+    link.href = image;                          // href에 위에서 설정한 canvas.toDataURL()을 대입
+    link.download = "My Sketchbook[🎨]";       // 다운로드 파일 이름
+    link.click();                               // 링크를 클릭하면 다운로드가 된다.
+}
+
+if (save) {
+    save.addEventListener("click", handleSaveClick);
+}
+
+// --------------------------------------------------
