@@ -10,11 +10,13 @@
     <!-- <script src="draw.js"></script>
     <script src="fill.js"></script> -->
     <link rel="stylesheet" href="paint.css">
+    <script src="https://use.fontawesome.com/releases/v5.15.4/js/all.js" data-auto-replace-svg="nest"></script>
 
   </head>
   <body>
-    
+
     <canvas id="drawCanvas" class="canvas"></canvas>
+
     <div class="controls">
       <!-- 선 길기 조절하기 -->
       <div class="controlRange">
@@ -29,9 +31,11 @@
         <button id="clearButton">Clear</button>
         <button id="saveButton">Save</button>
       </div>
+    </div>
 
       <!-- 색상 선택 설정하기 -->
       <div id="colorSelector" class="controlcolors">
+        <!-- <i class='fas fa-palette' style='font-size:36px'></i> -->
         <div class="color selectColor" style="background-color:#2c2c2c"></div>
         <div class="color selectColor" style="background-color:white"></div>
         <div class="color selectColor" style="background-color:#FF3B30"></div>
@@ -42,7 +46,7 @@
         <div class="color selectColor" style="background-color:#0579FF"></div>
         <div class="color selectColor" style="background-color:#5856D6"></div>
       </div>
-    </div>
+    
 
     <script src="paint.js"></script>
 

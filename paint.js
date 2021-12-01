@@ -16,8 +16,8 @@ const save = document.getElementById("saveButton");
 
 // css에 있는 건 눈에 보이는 사이즈
 // 여기에서 지정해 주는 건 픽셀 사이즈
-canvas.width = 600;
-canvas.height = 600;
+canvas.width = 800;
+canvas.height = 500;
 
 // 바탕색 default 값은 하얀색
 ctx.fillStyle = "white";
