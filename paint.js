@@ -2,6 +2,18 @@
 const canvas = document.getElementById("drawCanvas");
 const ctx = canvas.getContext('2d');
 
+canvas.width = 600;
+canvas.height = 600;
+
+// 바탕색 default 값은 하얀색
+ctx.fillStyle = "white";
+ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+// 선 색, 바탕 색
+ctx.strokeStyle = "black";
+ctx.fillStyle = "black";
+ctx.lineWidth = 2;
+
 // --------------------------------------------------
 // input 조절 기능 (버튼 굵기조절바)
 
@@ -37,6 +49,7 @@ if (mode) {
 }
 
 // --------------------------------------------------
+// clear 클릭 시 캔버스 초기화
 
 const clear = document.getElementById("clearButton");
 
@@ -48,15 +61,16 @@ if (clear) {
 }
 
 // --------------------------------------------------
+// save 클릭 시 지정해 준 이름으로 다운로드
 
 const save = document.getElementById("saveButton");
 
 function handleSaveClick() {
     const image = canvas.toDataURL();           // 캔버스의 이미지를 데이터 URL로 변환, 기본값은 PNG
     
-    // var fullQuality = image.replace(/^data:image\/png;base64,/, "1.0");     // 이미지의 품질을 높여 준다.
-    // var mediumQuality = image.replace(/^data:image\/png;base64,/, "0.5");   // 이미지의 품질을 낮추어 준다.
-    // var lowQuality = image.replace(/^data:image\/png;base64,/, "0.1");      // 이미지의 품질을 낮추어 준다.
+        // var fullQuality = image.replace(/^data:image\/png;base64,/, "1.0");     // 이미지의 품질을 높여 준다.
+        // var mediumQuality = image.replace(/^data:image\/png;base64,/, "0.5");   // 이미지의 품질을 낮추어 준다.
+        // var lowQuality = image.replace(/^data:image\/png;base64,/, "0.1");      // 이미지의 품질을 낮추어 준다.
 
     // .createElement()는 요소를 생성하는 함수
     const link = document.createElement("a");   // createElement에 대해 "a"라는 태그를 만들어서 link에 대입 <a></a>
@@ -70,3 +84,30 @@ if (save) {
 }
 
 // --------------------------------------------------
+// color 선택 > 원하는 색상으로 변경
+
+const colors = document.getElementById("colorSelector");
+
+function handleColorClick(event) {
+    const color = event.target.style.backgroundColor;
+    ctx.strokeStyle = color;
+    ctx.fillStyle = color;
+}
+
+    // Array.from()
+    // - 배열을 다시 배열로 반환하는 함수
+    // - 반환하는 값은 원래 배열의 값을 새로운 Array로 복사하여 반환한다.
+
+Array.from(colors).forEach(color => 
+    color.addEventListener("click", handleColorClick)
+);
+
+    // 화살표 함수를 사용하면 이벤트 핸들러에서 this를 사용할 수 있다.
+    // this를 사용하면 이벤트가 발생한 요소를 가리키는 객체를 사용할 수 있다.
+    // var d = function (a, b) {
+    //     console.log( a * b )
+    // };
+
+    // let d = (a, b) => { console.log( a * b ) };
+
+    // (매개변수) => { 본문 }
