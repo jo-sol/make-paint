@@ -67,6 +67,11 @@ body{
     color: #4090c0;
 }
 
+.controlButton .button:hover {
+    background-color: #dbf2ff;
+    color: #000000;
+}
+
 .controlButton .button:active{
     transform: scale(0.98);
 }
