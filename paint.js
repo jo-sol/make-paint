@@ -21,11 +21,11 @@ if (range) {
 
 const mode = document.getElementById("fillButton");
 
-let painting = false;
+// let painting = false;
 let filling = false;
 
 if (mode) {
-    mode.addEventListener("click", function(event) {
+    mode.addEventListener("click", function() {
         if (filling === true) {         // ===은 값과 타입 둘 다 같아야 한다. ==보다 조금 더 엄격하고 정확성이 있다.
             filling = false;            // 채우기 실행
             mode.innerText = "Fill";    // innerText는 텍스트만 가져오는 것이다.
@@ -39,4 +39,16 @@ if (mode) {
 // --------------------------------------------------
 
 const clear = document.getElementById("clearButton");
+
+if (clear) {
+    clear.addEventListener("click", function() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);   // 캔버스 초기화
+        ctx.beginPath();                                    // 캔버스 리셋
+    });
+}
+
+
+
+// --------------------------------------------------
+
 const save = document.getElementById("saveButton");
