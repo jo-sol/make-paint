@@ -2,16 +2,39 @@
 <html>
   <head>
     <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
     <title>My Sketchbook</title>
 
-    <script src="paint.js"></script>
-    <script src="fill.js"></script>
+    <!-- <script src="draw.js"></script>
+    <script src="fill.js"></script> -->
     <link rel="stylesheet" href="paint.css">
 
   </head>
+  <body>
+    
+    <canvas id="drawCanvas" class="canvas"></canvas>
+    
+    <!-- 선 길기 조절하기 -->
+    <div class="controlRange">
+      <!-- value는 <input> 요소의 초기값을 명시 -->
+      <!-- step은 <input> 요소에 입력할 수 있는 숫자들 사이의 간격을 명시 -->
+      <input type="range" id="brushSize" min="1" max="10" value="2" step="1">
+    </div>
 
-  <body onload="draw();">
-    <canvas id="canvas" width="150" height="150"></canvas>
+    <!-- 버튼 설정하기 -->
+    <div class="controlButton">
+      <button id="fillButton">Fill</button>
+      <button id="clearButton">Clear</button>
+      <button id="saveButton">Save</button>
+    </div>
+
+    <script src="paint.js"></script>
   </body>
+
+  <!-- <body onload="draw();">
+    <canvas id="canvas" width="150" height="150"></canvas>
+  </body> -->
 
 </html>
