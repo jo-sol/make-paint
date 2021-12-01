@@ -1,42 +1,20 @@
 // 캔버스 기본 세팅
 const canvas = document.getElementById("drawCanvas");
+const ctx = canvas.getContext('2d');
+
+// color 선택 > 원하는 색상으로 변경
+const colors = document.getElementById("colorSelector");
+// input 조절 기능 (버튼 굵기조절바)
+const range = document.getElementById("brushSize");
+// 채우기 클릭 시 Fill, Brush 버튼 설정
+const mode = document.getElementById("fillButton");
+// clear 클릭 시 캔버스 초기화
+const clear = document.getElementById("clearButton");
+// save 클릭 시 지정해 준 이름으로 다운로드
+const save = document.getElementById("saveButton");
 
 canvas.width = 600;
 canvas.height = 600;
-
-// --------------------------------------------------
-// 마우스 움직임에 따라 그리기
-
-let painting = false;
-
-function onMouseMove(event) {
-    // 마우스가 캔버스 위에 있을 때 가지는 x와 y의 좌표
-    const x = event.offsetX;
-    const y = event.offsetY;
-
-    if (!painting) {    // 그림을 그리고 있지 않을 때 (painting === true)
-        // 마우스가 캔버스 위에 있을 때 그리기 시작
-        ctx.beginPath();
-        // 캔버스의 좌표를 기준으로 시작점을 설정
-        ctx.moveTo(x, y);
-    } else {            // 그림을 그리고 있을 때
-        // lineTo와 stroke는 마우스를 움직일 때 생긴다.
-        // lineTo의 좌표에 Path가 그려짐 (보이지는 않음)
-        ctx.lineTo(x, y);
-        // 선 그리기
-        ctx.stroke();
-    }
-}
-
-if (canvas) {
-    // 사용자가 해당 element에서 마우스를 움직였을 때
-    canvas.addEventListener("mousemove", onMouseMove)
-}
-
-
-// --------------------------------------------------
-
-const ctx = canvas.getContext('2d');
 
 // 바탕색 default 값은 하얀색
 ctx.fillStyle = "white";
@@ -47,55 +25,70 @@ ctx.strokeStyle = "black";
 ctx.fillStyle = "black";
 ctx.lineWidth = 2;
 
-// --------------------------------------------------
-// input 조절 기능 (버튼 굵기조절바)
+let painting = false;
+let filling = false;
 
-const range = document.getElementById("brushSize");
+// --------------------------------------------------
+// 마우스 움직임에 따라 그리기
+
+function stopPainting(){
+    painting = false;   // 그림을 그리기 멈춤
+}
+
+function startPainting(){
+    painting = true;    // 그림 그리기 시작
+}
+
+// 위의 함수와 연결해서 생각하면 이해하기 쉽다!
+function onMouseMove(event) {
+    // 마우스가 캔버스 위에 있을 때 가지는 x와 y의 좌표
+    const x = event.offsetX;
+    const y = event.offsetY;
+
+    // 그림을 그리고 있지 않을 때
+    if (!painting) {
+        // 마우스가 캔버스 위에 있을 때 그리기 시작
+        // path로 내 시작점을 알림, 클릭 전 상황에서는 시작점이 없기 때문에 시작점을 알려 줌
+        ctx.beginPath();
+        // 캔버스의 좌표를 기준으로 시작점을 설정
+        ctx.moveTo(x, y);
+
+    // 그림을 그리고 있을 때 (painting === true)
+    } else {
+        // lineTo와 stroke는 마우스를 움직일 때 생긴다.
+        // lineTo의 좌표에 Path가 그려짐 (보이지는 않음)
+        ctx.lineTo(x, y);
+        // 선 그리기
+        ctx.stroke();
+    }
+}
+
+function handleColorClick(event) {
+    const color = event.target.style.backgroundColor;
+    ctx.strokeStyle = color;
+    ctx.fillStyle = color;
+}
 
 function handleRangeChange(event) {
     const rangevalue = event.target.value;
     ctx.lineWidth = rangevalue;
 }
 
-if (range) {
-    range.addEventListener("input", handleRangeChange);  
+function handleModeClick() {
+    if (filling === true) {         // ===은 값과 타입 둘 다 같아야 한다. ==보다 조금 더 엄격하고 정확성이 있다.
+        filling = false;            // 채우기 실행
+        mode.innerText = "Fill";    // innerText는 텍스트만 가져오는 것이다.
+    } else {
+        filling = true;
+        mode.innerText = "Brush";
+    }
 }
 
-// --------------------------------------------------
-// 채우기 클릭 시 Fill, Brush 버튼 설정
-
-const mode = document.getElementById("fillButton");
-
-let filling = false;
-
-if (mode) {
-    mode.addEventListener("click", function() {
-        if (filling === true) {         // ===은 값과 타입 둘 다 같아야 한다. ==보다 조금 더 엄격하고 정확성이 있다.
-            filling = false;            // 채우기 실행
-            mode.innerText = "Fill";    // innerText는 텍스트만 가져오는 것이다.
-        } else {
-            filling = true;
-            mode.innerText = "Brush";
-        }
-    });
+function handleCanvasClick() {
+    if (filling) {
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+    }
 }
-
-// --------------------------------------------------
-// clear 클릭 시 캔버스 초기화
-
-const clear = document.getElementById("clearButton");
-
-if (clear) {
-    clear.addEventListener("click", function() {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);   // 캔버스 초기화
-        ctx.beginPath();                                    // 캔버스 리셋
-    });
-}
-
-// --------------------------------------------------
-// save 클릭 시 지정해 준 이름으로 다운로드
-
-const save = document.getElementById("saveButton");
 
 function handleSaveClick() {
     const image = canvas.toDataURL();           // 캔버스의 이미지를 데이터 URL로 변환, 기본값은 PNG
@@ -111,20 +104,20 @@ function handleSaveClick() {
     link.click();                               // 링크를 클릭하면 다운로드가 된다.
 }
 
-if (save) {
-    save.addEventListener("click", handleSaveClick);
+if (canvas) {
+    // 캔버스에서 마우스를 움직였을 때
+    canvas.addEventListener("mousemove", onMouseMove)
+    // 캔버스에서 마우스를 눌렀을 때
+    canvas.addEventListener("mousedown", startPainting);
+    // 캔버스에서 마우스를 뗐을 때
+    canvas.addEventListener("mouseup", stopPainting);
+    // 캔버스에서 마우스가 벗어났을 때
+    canvas.addEventListener("mouseleave", stopPainting);
+    // 캔버스에 색 전부 채우기
+    canvas.addEventListener("click", handleCanvasClick);
 }
 
 // --------------------------------------------------
-// color 선택 > 원하는 색상으로 변경
-
-const colors = document.getElementById("colorSelector");
-
-function handleColorClick(event) {
-    const color = event.target.style.backgroundColor;
-    ctx.strokeStyle = color;
-    ctx.fillStyle = color;
-}
 
     // Array.from()
     // - 배열을 다시 배열로 반환하는 함수
@@ -143,3 +136,30 @@ Array.from(colors).forEach(color =>
     // let d = (a, b) => { console.log( a * b ) };
 
     // (매개변수) => { 본문 }
+
+// --------------------------------------------------
+
+if (range) {
+    range.addEventListener("input", handleRangeChange);  
+}
+
+// --------------------------------------------------
+
+if (mode) {
+    mode.addEventListener("click", handleModeClick);
+}
+
+// --------------------------------------------------
+
+if (clear) {
+    clear.addEventListener("click", function() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);   // 캔버스 초기화
+        ctx.beginPath();                                    // 캔버스 리셋
+    });
+}
+
+// --------------------------------------------------
+
+if (save) {
+    save.addEventListener("click", handleSaveClick);
+}
