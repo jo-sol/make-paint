@@ -3,7 +3,7 @@ const canvas = document.getElementById("drawCanvas");
 const ctx = canvas.getContext('2d');
 
 // color 선택 > 원하는 색상으로 변경
-const colors = document.getElementById("colorSelector");
+const colors = document.getElementsByClassName("selectColor");
 // input 조절 기능 (버튼 굵기조절바)
 const range = document.getElementById("brushSize");
 // 채우기 클릭 시 Fill, Brush 버튼 설정
@@ -13,6 +13,8 @@ const clear = document.getElementById("clearButton");
 // save 클릭 시 지정해 준 이름으로 다운로드
 const save = document.getElementById("saveButton");
 
+// css에 있는 건 눈에 보이는 사이즈
+// 여기에서 지정해 주는 건 픽셀 사이즈
 canvas.width = 600;
 canvas.height = 600;
 
@@ -20,7 +22,7 @@ canvas.height = 600;
 ctx.fillStyle = "white";
 ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-// 선 색, 바탕 색
+// 선 색, 바탕 색 default
 ctx.strokeStyle = "black";
 ctx.fillStyle = "black";
 ctx.lineWidth = 2;
@@ -90,6 +92,10 @@ function handleCanvasClick() {
     }
 }
 
+function handleCM(event) {
+    event.preventDefault();     // 우클릭 금지 - 다른 이름으로 저장 못하고 save 버튼 이용하게
+}
+
 function handleSaveClick() {
     const image = canvas.toDataURL();           // 캔버스의 이미지를 데이터 URL로 변환, 기본값은 PNG
     
@@ -115,6 +121,8 @@ if (canvas) {
     canvas.addEventListener("mouseleave", stopPainting);
     // 캔버스에 색 전부 채우기
     canvas.addEventListener("click", handleCanvasClick);
+    // 우클릭 감지
+    canvas.addEventListener("contextmenu", handleCM);       // contextmenu: 우클릭을 감지하는 이벤트
 }
 
 // --------------------------------------------------
