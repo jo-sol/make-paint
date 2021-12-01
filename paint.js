@@ -22,7 +22,6 @@ const { width, height } = canvas.getBoundingClientRect();
 canvas.width = width;
 canvas.height = height;
 
-
 // 바탕색 default 값은 하얀색
 ctx.fillStyle = "white";
 ctx.fillRect(0, 0, canvas.width, canvas.height);
@@ -30,7 +29,7 @@ ctx.fillRect(0, 0, canvas.width, canvas.height);
 // 선 색, 바탕 색 default
 ctx.strokeStyle = "black";
 ctx.fillStyle = "black";
-ctx.lineWidth = 2;
+ctx.lineWidth = 5;
 
 let painting = false;
 let filling = false;
@@ -64,9 +63,10 @@ function onMouseMove(event) {
     } else {
         // lineTo와 stroke는 마우스를 움직일 때 생긴다.
         // lineTo의 좌표에 Path가 그려짐 (보이지는 않음)
-        ctx.lineTo(x, y);
-        // 선 그리기
-        ctx.stroke();
+        ctx.lineTo(x, y);               // 클릭 후 이벤트가 발생한 위치에 끝점 설정
+        ctx.lineCap = "round";          // 끝부분 처리 - 둥글게, 선 두께를 반지름으로
+        ctx.lineJoin = "round";         // 접점부분 처리 - 둥글게, 선 두께를 반지름으로
+        ctx.stroke();                   // 그리기
     }
 }
 
