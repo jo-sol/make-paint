@@ -1,9 +1,42 @@
 // 캔버스 기본 세팅
 const canvas = document.getElementById("drawCanvas");
-const ctx = canvas.getContext('2d');
 
 canvas.width = 600;
 canvas.height = 600;
+
+// --------------------------------------------------
+// 마우스 움직임에 따라 그리기
+
+let painting = false;
+
+function onMouseMove(event) {
+    // 마우스가 캔버스 위에 있을 때 가지는 x와 y의 좌표
+    const x = event.offsetX;
+    const y = event.offsetY;
+
+    if (!painting) {    // 그림을 그리고 있지 않을 때 (painting === true)
+        // 마우스가 캔버스 위에 있을 때 그리기 시작
+        ctx.beginPath();
+        // 캔버스의 좌표를 기준으로 시작점을 설정
+        ctx.moveTo(x, y);
+    } else {            // 그림을 그리고 있을 때
+        // lineTo와 stroke는 마우스를 움직일 때 생긴다.
+        // lineTo의 좌표에 Path가 그려짐 (보이지는 않음)
+        ctx.lineTo(x, y);
+        // 선 그리기
+        ctx.stroke();
+    }
+}
+
+if (canvas) {
+    // 사용자가 해당 element에서 마우스를 움직였을 때
+    canvas.addEventListener("mousemove", onMouseMove)
+}
+
+
+// --------------------------------------------------
+
+const ctx = canvas.getContext('2d');
 
 // 바탕색 default 값은 하얀색
 ctx.fillStyle = "white";
@@ -33,7 +66,6 @@ if (range) {
 
 const mode = document.getElementById("fillButton");
 
-// let painting = false;
 let filling = false;
 
 if (mode) {
