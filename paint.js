@@ -16,8 +16,12 @@ const save = document.getElementById("saveButton");
 
 // css에 있는 건 눈에 보이는 사이즈
 // 여기에서 지정해 주는 건 픽셀 사이즈
-canvas.width = 800;
-canvas.height = 500;
+// canvas.width = 800;
+// canvas.height = 500;
+const { width, height } = canvas.getBoundingClientRect();
+canvas.width = width;
+canvas.height = height;
+
 
 // 바탕색 default 값은 하얀색
 ctx.fillStyle = "white";
@@ -80,10 +84,10 @@ function handleRangeChange(event) {
 function handleModeClick() {
     if (filling === true) {         // ===은 값과 타입 둘 다 같아야 한다. ==보다 조금 더 엄격하고 정확성이 있다.
         filling = false;            // 채우기 실행
-        mode.innerText = "Fill";    // innerText는 텍스트만 가져오는 것이다.
+        mode.innerText = "채우기";    // innerText는 텍스트만 가져오는 것이다.
     } else {
         filling = true;
-        mode.innerText = "Brush";
+        mode.innerText = "그리기";
     }
 }
 
