@@ -3,6 +3,7 @@ const canvas = document.getElementById("drawCanvas");
 const ctx = canvas.getContext('2d');
 
 // color 선택 > 원하는 색상으로 변경
+// getElementsByClassName은 배열로 반환한다.
 const colors = document.getElementsByClassName("selectColor");
 // input 조절 기능 (버튼 굵기조절바)
 const range = document.getElementById("brushSize");
